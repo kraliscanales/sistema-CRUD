@@ -1,0 +1,28 @@
+# ======================
+# PYTHON / DJANGO
+# ======================
+
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Variables privadas
+.env
+
+# Logs
+*.log
+
+# ======================
+# REACT / NODE
+# ======================
+
+node_modules/
+dist/
+build/
+
+# ======================
+# VS CODE
+# ======================
+
+.vscode/
