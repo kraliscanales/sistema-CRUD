@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react"
 import { getProducts } from "../api/products"
+import { useNavigate } from "react-router"
+import { deleteProduct } from "../api/products"
 
 export default function ProductList() {
     const [products, setProducts] = useState([])
+
+    const navigate = useNavigate()
 
     const loadProducts = async () => {
         const response = await getProducts()
         setProducts(response.data)
     }
+
+    const handleDelete = async (id) => {
+        await deleteProduct(id)
+        setProducts(products.filter(product => product.id !== id))
+    }
+
     useEffect(() => {
         loadProducts()
     }, [])
@@ -22,8 +32,14 @@ export default function ProductList() {
                         <p><span className="font-bold">precio: </span> ${product.precio.toFixed(2)}</p>
                         <p><span className="font-bold">descripcion: </span>{product.descripcion}</p>
                         <div className="ml-4">
-                            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-                            <button className="bg-green-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">Editar</button>
+                            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            onClick={() => handleDelete(product.id)}
+                            >Eliminar</button>
+                            <button
+                            className="bg-green-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
+                            onClick={() => navigate(`/editar-producto/${product.id}`)}
+                            >
+                            Editar</button>
                         </div>
                     </div>
 
