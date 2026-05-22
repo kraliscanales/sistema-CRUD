@@ -1,8 +1,8 @@
-import { BrowserRouter, Route, Routes } from "react-router"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Toaster } from "react-hot-toast"
 import ProductForm from "./components/ProductForm"
-import ProductList from "./components/productlist"
-import Header from "./components/header"
+import ProductList from "./components/Productlist"
+import Header from "./components/Header"
 
 function App() {
   return (

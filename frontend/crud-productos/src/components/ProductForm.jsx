@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { createProduct, getProduct, updateProduct } from "../api/products"
-import { useNavigate, useParams } from "react-router"
+import { useNavigate, useParams } from "react-router-dom"
 import toast from "react-hot-toast"
 
 export default function ProductForm() {
@@ -17,7 +17,11 @@ export default function ProductForm() {
         const loadProduct = async () => {
             if (params.id) {
                 const response = await getProduct(params.id)
-                setProduct(response.data)
+                setProduct({
+                    nombre: response.data.nombre,
+                    precio: response.data.precio,
+                    descripcion: response.data.descripcion
+                })
             }
 
         }
@@ -54,7 +58,7 @@ export default function ProductForm() {
                     <input
                     value={product.precio}
                     type="number" placeholder="Precio del producto"
-                    onChange = {(e) => setProduct({...product, precio: e.target.value})}     
+                    onChange = {(e) => setProduct({...product, precio: Number(e.target.value)})}     
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" />
                 </div>
                 <div className="mb-4">
@@ -66,7 +70,13 @@ export default function ProductForm() {
                 </div>
                 <div className="mt-4">
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg" >Guardar</button>
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg ml-2">Cancelar</button>
+                    <button
+                    type="button"
+                    onClick={() => navigate("/")}
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg ml-2"
+                    >
+                    Cancelar
+                    </button>
                 </div>
             </form>
         </div>
