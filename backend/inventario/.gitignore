@@ -1,0 +1,25 @@
+# Entorno virtual
+venv/
+
+# Variables de entorno
+.env
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+
+
+# Archivos estáticos recopilados
+staticfiles/
+
+# Archivos de logs
+*.log
+
+# Configuración de VS Code
+.vscode/
+
+# Configuración de PyCharm
+.idea/
+
+# Archivos del sistema operativo
+Thumbs.db
